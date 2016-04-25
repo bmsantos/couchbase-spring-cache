@@ -20,6 +20,7 @@ import java.util.List;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.CouchbaseCluster;
+import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,6 +45,9 @@ public class TestConfiguration {
     @Value("${couchbase.cache.password}")
     private String bucketPassword;
 
+    @Value("${couchbase.cache.kv.timeout}")
+    private Long kvTimeout;
+
     public String seedNode() {
         return System.getProperty("couchbase.seedNode",
           nodes == null || nodes.isEmpty() ? "127.0.0.1" : nodes.get(0));
@@ -60,7 +64,9 @@ public class TestConfiguration {
 
     @Bean(destroyMethod = "disconnect")
     public Cluster cluster() {
-        return CouchbaseCluster.create(seedNode());
+        final DefaultCouchbaseEnvironment.Builder envBuilder = DefaultCouchbaseEnvironment.builder();
+        envBuilder.kvTimeout(kvTimeout);
+        return CouchbaseCluster.create(envBuilder.build(), seedNode());
     }
 
     @Bean(destroyMethod = "close")
