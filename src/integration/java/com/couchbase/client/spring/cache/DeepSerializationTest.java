@@ -50,7 +50,7 @@ public class DeepSerializationTest {
   }
 
   /**
-   * The following test will fail to deserialize when DEEP_LEVEL >= 4
+   * The following test will fail to deserialize when DEEP_LEVEL is larger than number of thread pool
    */
   @Test
   public void shouldDeserializeComplexObject() {
@@ -76,7 +76,7 @@ public class DeepSerializationTest {
   private Foo getFooStructure() {
     final Foo root = createFoo(0);
     Foo current = root;
-    for (int id = 1; id <= DEEP_LEVEL; id++) { // Fails if number of Foo classes is > 4
+    for (int id = 1; id <= DEEP_LEVEL; id++) {
       current.getOther().setFoo(createFoo(id));
       cache.put(current.getOther().getId(), current.getOther());
 

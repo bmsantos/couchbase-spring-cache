@@ -46,7 +46,10 @@ public class TestConfiguration {
     private String bucketPassword;
 
     @Value("${couchbase.cache.kv.timeout}")
-    private Long kvTimeout;
+    private Integer kvTimeout;
+
+    @Value("${couchbase.cache.computation.pool.size}")
+    private Integer computationPoolSize;
 
     public String seedNode() {
         return System.getProperty("couchbase.seedNode",
@@ -66,6 +69,9 @@ public class TestConfiguration {
     public Cluster cluster() {
         final DefaultCouchbaseEnvironment.Builder envBuilder = DefaultCouchbaseEnvironment.builder();
         envBuilder.kvTimeout(kvTimeout);
+        if (computationPoolSize > 0) {
+            envBuilder.computationPoolSize(computationPoolSize);
+        }
         return CouchbaseCluster.create(envBuilder.build(), seedNode());
     }
 
