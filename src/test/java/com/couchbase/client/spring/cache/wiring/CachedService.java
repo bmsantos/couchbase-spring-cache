@@ -17,7 +17,6 @@ package com.couchbase.client.spring.cache.wiring;
 
 import java.io.Serializable;
 
-import com.couchbase.client.spring.cache.CouchbaseCache;
 import com.couchbase.client.spring.cache.wiring.javaConfig.CacheEnabledTestConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -18,7 +18,7 @@ package com.couchbase.client.spring.cache.wiring.xml;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.couchbase.client.spring.cache.wiring.AbstractCouchbaseCacheWiringTest;
+import com.couchbase.client.spring.cache.wiring.AbstractCouchbaseCacheWiringITest;
 import com.couchbase.client.spring.cache.wiring.CachedService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,8 +36,8 @@ import static org.junit.Assert.assertNotNull;
  * @author Simon Baslé
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "test-manager-context.xml"})
-public class CouchbaseCacheXmlWiringTest extends AbstractCouchbaseCacheWiringTest {
+@ContextConfiguration({"test-manager-context.xml"})
+public class CouchbaseCacheXmlWiringITest extends AbstractCouchbaseCacheWiringITest {
 
   @Test
   public void testBeans() {

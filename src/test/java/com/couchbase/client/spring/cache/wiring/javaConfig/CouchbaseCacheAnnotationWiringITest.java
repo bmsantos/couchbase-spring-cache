@@ -21,8 +21,9 @@ import static org.junit.Assert.assertNotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.couchbase.client.spring.cache.wiring.AbstractCouchbaseCacheWiringTest;
+import com.couchbase.client.spring.cache.wiring.AbstractCouchbaseCacheWiringITest;
 import com.couchbase.client.spring.cache.wiring.CachedService;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -38,7 +39,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = CacheEnabledTestConfiguration.class)
-public class CouchbaseCacheAnnotationWiringTest extends AbstractCouchbaseCacheWiringTest {
+public class CouchbaseCacheAnnotationWiringITest extends AbstractCouchbaseCacheWiringITest {
 
   @Test
   public void testBeans() {
@@ -46,12 +47,12 @@ public class CouchbaseCacheAnnotationWiringTest extends AbstractCouchbaseCacheWi
     assertNotNull(bucket);
     assertEquals("default", bucket.name());
     assertNotNull(defaultBuilder);
-    assertEquals(bucket, defaultBuilder.build("test").getNativeCache());
+    Assert.assertEquals(bucket, defaultBuilder.build("test").getNativeCache());
     assertNotNull(cacheManager);
 
     Set<String> expectedCaches = new HashSet<String>(3);
     expectedCaches.add("dataCache");
-    assertEquals(expectedCaches, cacheManager.getCacheNames());
+    Assert.assertEquals(expectedCaches, cacheManager.getCacheNames());
   }
 
 }

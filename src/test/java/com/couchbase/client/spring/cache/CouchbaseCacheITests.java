@@ -54,7 +54,7 @@ import static org.junit.Assert.fail;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfiguration.class)
-public class CouchbaseCacheTests {
+public class CouchbaseCacheITests {
 
   /**
    * Contains a reference to the actual CouchbaseClient.

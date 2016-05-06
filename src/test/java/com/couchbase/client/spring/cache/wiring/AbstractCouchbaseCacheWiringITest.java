@@ -39,7 +39,7 @@ import static org.junit.Assert.fail;
  *
  * @author Simon Baslé
  */
-public abstract class AbstractCouchbaseCacheWiringTest {
+public abstract class AbstractCouchbaseCacheWiringITest {
 
   @Autowired
   public Cluster cluster;
